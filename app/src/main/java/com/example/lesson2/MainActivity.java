@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() != "0") {
-                    tv.setText(tv.getText() + "+");
-                    saveBox.setOperation("+");
+                    tv.setText(tv.getText() + getResources().getString(R.string.plus));
+                    saveBox.setOperation(getResources().getString(R.string.plus));
                     saveBox.setCurrentNumber(2);
                 }
             }
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() != "0") {
-                    tv.setText(tv.getText() + "=" + saveBox.getOperationResult());
+                    tv.setText(tv.getText() + getResources().getString(R.string.equal) + saveBox.getOperationResult());
 
                 }
             }
@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() != "0") {
-                    tv.setText(tv.getText() + "-");
-                    saveBox.setOperation("-");
+                    tv.setText(tv.getText() + getResources().getString(R.string.minus));
+                    saveBox.setOperation(getResources().getString(R.string.minus));
                     saveBox.setCurrentNumber(2);
                 }
             }
@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() != "0") {
-                    tv.setText(tv.getText() + "X");
-                    saveBox.setOperation("X");
+                    tv.setText(tv.getText() + getResources().getString(R.string.multy));
+                    saveBox.setOperation(getResources().getString(R.string.multy));
                     saveBox.setCurrentNumber(2);
                 }
             }
@@ -119,12 +119,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("1");
+                    tv.setText(getResources().getString(R.string._1));
                 }
                 else {
-                    tv.setText(tv.getText() + "1");
+                    tv.setText(tv.getText() + getResources().getString(R.string._1));
                 }
-                saveBox.setNumber("1");
+                saveBox.setNumber(getResources().getString(R.string._1));
             }
         });
 
@@ -132,12 +132,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("2");
+                    tv.setText(getResources().getString(R.string._2));
                 }
                 else {
-                    tv.setText(tv.getText() + "2");
+                    tv.setText(tv.getText() + getResources().getString(R.string._2));
                 }
-                saveBox.setNumber("2");
+                saveBox.setNumber(getResources().getString(R.string._2));
             }
         });
 
@@ -145,12 +145,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("3");
+                    tv.setText(getResources().getString(R.string._3));
                 }
                 else {
-                    tv.setText(tv.getText() + "3");
+                    tv.setText(tv.getText() + getResources().getString(R.string._3));
                 }
-                saveBox.setNumber("3");
+                saveBox.setNumber(getResources().getString(R.string._3));
             }
         });
 
@@ -158,12 +158,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("4");
+                    tv.setText(getResources().getString(R.string._4));
                 }
                 else {
-                    tv.setText(tv.getText() + "4");
+                    tv.setText(tv.getText() + getResources().getString(R.string._4));
                 }
-                saveBox.setNumber("4");
+                saveBox.setNumber(getResources().getString(R.string._4));
             }
         });
 
@@ -171,12 +171,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("5");
+                    tv.setText(getResources().getString(R.string._5));
                 }
                 else {
-                    tv.setText(tv.getText() + "5");
+                    tv.setText(tv.getText() + getResources().getString(R.string._5));
                 }
-                saveBox.setNumber("5");
+                saveBox.setNumber(getResources().getString(R.string._5));
             }
         });
 
@@ -184,12 +184,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("6");
+                    tv.setText(getResources().getString(R.string._6));
                 }
                 else {
-                    tv.setText(tv.getText() + "6");
+                    tv.setText(tv.getText() + getResources().getString(R.string._6));
                 }
-                saveBox.setNumber("6");
+                saveBox.setNumber(getResources().getString(R.string._6));
             }
         });
 
@@ -197,12 +197,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("7");
+                    tv.setText(getResources().getString(R.string._7));
                 }
                 else {
-                    tv.setText(tv.getText() + "7");
+                    tv.setText(tv.getText() + getResources().getString(R.string._7));
                 }
-                saveBox.setNumber("7");
+                saveBox.setNumber(getResources().getString(R.string._7));
             }
         });
 
@@ -210,12 +210,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("8");
+                    tv.setText(getResources().getString(R.string._8));
                 }
                 else {
-                    tv.setText(tv.getText() + "8");
+                    tv.setText(tv.getText() + getResources().getString(R.string._8));
                 }
-                saveBox.setNumber("8");
+                saveBox.setNumber(getResources().getString(R.string._8));
             }
         });
 
@@ -223,12 +223,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("9");
+                    tv.setText(getResources().getString(R.string._9));
                 }
                 else {
-                    tv.setText(tv.getText() + "9");
+                    tv.setText(tv.getText() + getResources().getString(R.string._9));
                 }
-                saveBox.setNumber("9");
+                saveBox.setNumber(getResources().getString(R.string._9));
             }
         });
 
@@ -236,12 +236,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tv.getText() == "0") {
-                    tv.setText("0");
+                    tv.setText(getResources().getString(R.string._0));
                 }
                 else {
-                    tv.setText(tv.getText() + "0");
+                    tv.setText(tv.getText() + getResources().getString(R.string._0));
                 }
-                saveBox.setNumber("0");
+                saveBox.setNumber(getResources().getString(R.string._0));
             }
         });
 
