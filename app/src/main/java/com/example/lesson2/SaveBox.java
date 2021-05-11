@@ -9,6 +9,7 @@ public class SaveBox implements Serializable {
     private String secondNumber;
     private String operation;
     private int currentNumber;
+    private boolean isEqual;
 
     public int getCurrentNumber() {
         return currentNumber;
@@ -24,6 +25,15 @@ public class SaveBox implements Serializable {
         secondNumber = "";
         operation = "";
         currentNumber = 1;
+        isEqual = false;
+    }
+
+    public boolean isEqual() {
+        return isEqual;
+    }
+
+    public void setEqual(boolean equal) {
+        isEqual = equal;
     }
 
     public String getFirstNumber() {
@@ -81,7 +91,11 @@ public class SaveBox implements Serializable {
             case "X":
                 res = one * two;
                 break;
+            case "/":
+                res = one / two;
+                break;
         }
-        return String.valueOf(res);
+        String res_str = String.valueOf(res);
+        return res_str.substring(0, res_str.lastIndexOf("."));
     }
 }

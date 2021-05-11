@@ -20,4 +20,6 @@
     <string name="_C">С</string>
     <string name="_CE">СЕ</string>
     <string name="del">/</string>
+    <string name="option">Опции</string>
+    <string name="back">Назад</string>
 </resources>

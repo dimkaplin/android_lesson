@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lesson2</string>
+    <string name="app_name">Calculator</string>
     <string name="_1">1</string>
     <string name="_2">2</string>
     <string name="_3">3</string>
@@ -20,4 +20,6 @@
     <string name="_C">C</string>
     <string name="_CE">CE</string>
     <string name="del">/</string>
+    <string name="option">Options</string>
+    <string name="back">back</string>
 </resources>

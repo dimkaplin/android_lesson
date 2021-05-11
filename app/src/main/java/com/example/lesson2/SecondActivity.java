@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
@@ -17,11 +18,16 @@ import android.widget.Toast;
 public class SecondActivity extends AppCompatActivity {
 
     private static final String TAG = "SActivity";
+    private static final String NamePrefer = "Theme";
+    private static final String AppTheme = "APP_THEME";
+    private static final int DefaultStyle = 0;
+    private static final int BlueStyle = 1;
     private TextView tv;
     private SaveBox saveBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(getCodeStyle(DefaultStyle));
         setContentView(R.layout.activity_second);
         Button back = findViewById(R.id.button_back);
         tv = findViewById(R.id.text_click);
@@ -42,6 +48,22 @@ public class SecondActivity extends AppCompatActivity {
                 tv.setText(tv.getText() + " Ура!");
 
                 saveBox.setCurrentClick((String) tv.getText());
+            }
+        });
+
+        findViewById(R.id.radioStandartStyle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTheme(getAppTheme(DefaultStyle));
+                recreate();
+            }
+        });
+
+        findViewById(R.id.radioBlueStyle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTheme(getAppTheme(BlueStyle));
+                recreate();
             }
         });
     }
@@ -110,5 +132,27 @@ public class SecondActivity extends AppCompatActivity {
         Log.d(TAG, "onSaveInstanceState");
         outState.putSerializable("SAVEBOX", saveBox);
         //tv.setText(saveBox.getCurrentClick());
+    }
+
+    private int getAppTheme(int code) {
+        SharedPreferences sp = getSharedPreferences(NamePrefer, MODE_PRIVATE);
+        sp.edit().putInt(AppTheme, CodeStyleById(code)).apply();
+        return CodeStyleById(code);
+
+    }
+
+    private int CodeStyleById(int code) {
+        switch (code) {
+            case BlueStyle:
+                return R.style.CalcNewStyle;
+            case DefaultStyle:
+            default:
+                return R.style.ThemeCalculator;
+        }
+    }
+
+    private int getCodeStyle(int codeStyle) {
+        SharedPreferences sp = getSharedPreferences(NamePrefer, MODE_PRIVATE);
+        return sp.getInt(AppTheme, codeStyle);
     }
 }
