@@ -1,8 +1,10 @@
 package com.example.lesson2;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MActivity";
+    public static final String SEND_STRING = "FROM_MA";
+    public static final int SEND_CODE = 33;
     private TextView tv;
     private Button button_1;
     private Button button_2;
@@ -191,7 +195,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName(MainActivity.this,SecondActivity.class));
-                startActivity(intent);
+                intent.putExtra(SEND_STRING, tv.getText().toString());
+                //startActivity(intent);
+                startActivityForResult(intent, SEND_CODE);
             }
         });
     }
@@ -274,5 +280,19 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         Toast.makeText(getApplicationContext(), "onSaveInstanceState", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onSaveInstanceState");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode != SEND_CODE) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+
+        if (resultCode == Activity.RESULT_OK) {
+            //Toast.makeText(getApplicationContext(), "result" + data.getParcelableExtra(SEND_STRING).toString(), Toast.LENGTH_SHORT).show();
+          tv.setText(data.getStringExtra(SEND_STRING));
+        }
+
     }
 }

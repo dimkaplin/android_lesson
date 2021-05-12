@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class SecondActivity extends AppCompatActivity {
 
     private static final String TAG = "SActivity";
@@ -24,6 +27,7 @@ public class SecondActivity extends AppCompatActivity {
     private static final int BlueStyle = 1;
     private TextView tv;
     private SaveBox saveBox;
+    private TextInputEditText inText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +35,20 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
         Button back = findViewById(R.id.button_back);
         tv = findViewById(R.id.text_click);
+        inText = findViewById(R.id.textInputEditText);
+        inText.setText(getIntent().getStringExtra(MainActivity.SEND_STRING));
         saveBox = new SaveBox();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setComponent(new ComponentName(SecondActivity.this,MainActivity.class));
-                startActivity(intent);
+                //intent.setComponent(new ComponentName(SecondActivity.this,MainActivity.class));
+                //startActivity(intent);
+                intent.putExtra(MainActivity.SEND_STRING, "32");
+                //startActivityForResult(intent,  MainActivity.SEND_CODE);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+
             }
         });
 
@@ -155,4 +166,6 @@ public class SecondActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(NamePrefer, MODE_PRIVATE);
         return sp.getInt(AppTheme, codeStyle);
     }
+
+
 }
