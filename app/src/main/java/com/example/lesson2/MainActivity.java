@@ -1,8 +1,10 @@
 package com.example.lesson2;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MActivity";
+    public static final String SEND_STRING = "FROM_MA";
+    public static final int SEND_CODE = 33;
     private TextView tv;
     private Button button_1;
     private Button button_2;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button_minus;
     private Button button_multy;
     private Button button_equal;
+    private Button button_del;
     private SaveBox saveBox;
 
     @Override
@@ -59,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         button_plus = findViewById(R.id.button_plus);
         button_minus = findViewById(R.id.button_minus);
         button_multy = findViewById(R.id.button_multy);
+        button_del = findViewById(R.id.button_del);
         button_equal = findViewById(R.id.button_equal);
         tv = findViewById(R.id.textView);
 
@@ -69,26 +75,24 @@ public class MainActivity extends AppCompatActivity {
                 saveBox.setCurrentNumber(1);
                 saveBox.setFirstNumber("");
                 saveBox.setSecondNumber("");
+                saveBox.setEqual(false);
             }
         });
 
         button_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() != "0") {
-                    tv.setText(tv.getText() + "+");
-                    saveBox.setOperation("+");
-                    saveBox.setCurrentNumber(2);
-                }
+                setOperation(getResources().getString(R.string.plus));
             }
         });
 
         button_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() != "0") {
-                    tv.setText(tv.getText() + "=" + saveBox.getOperationResult());
-
+                if (!tv.getText().equals("0") && !saveBox.isEqual()) {
+                    tv.setText(tv.getText() + getResources().getString(R.string.equal) + saveBox.getOperationResult());
+                    saveBox.setEqual(true);
+                    saveBox.setFirstNumber(saveBox.getOperationResult());
                 }
             }
         });
@@ -96,152 +100,91 @@ public class MainActivity extends AppCompatActivity {
         button_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() != "0") {
-                    tv.setText(tv.getText() + "-");
-                    saveBox.setOperation("-");
-                    saveBox.setCurrentNumber(2);
-                }
+                setOperation(getResources().getString(R.string.minus));
             }
         });
 
         button_multy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() != "0") {
-                    tv.setText(tv.getText() + "X");
-                    saveBox.setOperation("X");
-                    saveBox.setCurrentNumber(2);
-                }
+                setOperation(getResources().getString(R.string.multy));
+            }
+        });
+
+        button_del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setOperation(getResources().getString(R.string.del));
             }
         });
 
         button_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("1");
-                }
-                else {
-                    tv.setText(tv.getText() + "1");
-                }
-                saveBox.setNumber("1");
+                setNumber(getResources().getString(R.string._1));
             }
         });
 
         button_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("2");
-                }
-                else {
-                    tv.setText(tv.getText() + "2");
-                }
-                saveBox.setNumber("2");
+                setNumber(getResources().getString(R.string._2));
             }
         });
 
         button_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("3");
-                }
-                else {
-                    tv.setText(tv.getText() + "3");
-                }
-                saveBox.setNumber("3");
+                setNumber(getResources().getString(R.string._3));
             }
         });
 
         button_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("4");
-                }
-                else {
-                    tv.setText(tv.getText() + "4");
-                }
-                saveBox.setNumber("4");
+                setNumber(getResources().getString(R.string._4));
             }
         });
 
         button_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("5");
-                }
-                else {
-                    tv.setText(tv.getText() + "5");
-                }
-                saveBox.setNumber("5");
+                setNumber(getResources().getString(R.string._5));
             }
         });
 
         button_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("6");
-                }
-                else {
-                    tv.setText(tv.getText() + "6");
-                }
-                saveBox.setNumber("6");
+                setNumber(getResources().getString(R.string._6));
             }
         });
 
         button_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("7");
-                }
-                else {
-                    tv.setText(tv.getText() + "7");
-                }
-                saveBox.setNumber("7");
+                setNumber(getResources().getString(R.string._7));
             }
         });
 
         button_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("8");
-                }
-                else {
-                    tv.setText(tv.getText() + "8");
-                }
-                saveBox.setNumber("8");
+                setNumber(getResources().getString(R.string._8));
             }
         });
 
         button_9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("9");
-                }
-                else {
-                    tv.setText(tv.getText() + "9");
-                }
-                saveBox.setNumber("9");
+                setNumber(getResources().getString(R.string._9));
             }
         });
 
         button_0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tv.getText() == "0") {
-                    tv.setText("0");
-                }
-                else {
-                    tv.setText(tv.getText() + "0");
-                }
-                saveBox.setNumber("0");
+                setNumber(getResources().getString(R.string._0));
             }
         });
 
@@ -252,13 +195,42 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName(MainActivity.this,SecondActivity.class));
-                startActivity(intent);
+                intent.putExtra(SEND_STRING, tv.getText().toString());
+                //startActivity(intent);
+                startActivityForResult(intent, SEND_CODE);
             }
         });
     }
 
     public MainActivity() {
         super();
+    }
+
+    private void setNumber(String number) {
+        Toast.makeText(getApplicationContext(), "tv_text: " + tv.getText(), Toast.LENGTH_SHORT).show();
+        if (tv.getText().equals("0") || tv.getText() == null) {
+            tv.setText(number);
+        }
+        else {
+            tv.setText(tv.getText() + number);
+        }
+        saveBox.setNumber(number);
+    }
+
+    private void setOperation(String operation) {
+        if (!saveBox.getFirstNumber().equals("") && saveBox.getOperation().equals("")) {
+            tv.setText(tv.getText() + operation);
+            saveBox.setOperation(operation);
+            saveBox.setCurrentNumber(2);
+        }
+
+        if (!saveBox.getFirstNumber().equals("") && (!saveBox.getOperation().equals("") || saveBox.isEqual())) {
+            tv.setText(saveBox.getFirstNumber() + operation);
+            saveBox.setOperation(operation);
+            saveBox.setCurrentNumber(2);
+            saveBox.setEqual(false);
+        }
+
     }
 
     @Override
@@ -308,5 +280,19 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         Toast.makeText(getApplicationContext(), "onSaveInstanceState", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onSaveInstanceState");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode != SEND_CODE) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+
+        if (resultCode == Activity.RESULT_OK) {
+            //Toast.makeText(getApplicationContext(), "result" + data.getParcelableExtra(SEND_STRING).toString(), Toast.LENGTH_SHORT).show();
+          tv.setText(data.getStringExtra(SEND_STRING));
+        }
+
     }
 }

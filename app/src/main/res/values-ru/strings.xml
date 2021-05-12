@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Calculator</string>
     <string name="_1">1</string>
     <string name="_2">2</string>
     <string name="_3">3</string>
@@ -15,11 +15,11 @@
     <string name="equal">=</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
-    <string name="multy">X</string>
+    <string name="multy">Х</string>
     <string name="percent">%</string>
-    <string name="_C">C</string>
-    <string name="_CE">CE</string>
+    <string name="_C">С</string>
+    <string name="_CE">СЕ</string>
     <string name="del">/</string>
-    <string name="option">Options</string>
-    <string name="back">back</string>
+    <string name="option">Опции</string>
+    <string name="back">Назад</string>
 </resources>
